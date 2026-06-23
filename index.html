@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Promesse di Bellezza · Centro estetico a Cavour</title>
+<link rel="icon" href="images/favicon.png" />
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png" />
+<meta name="description" content="Promesse di Bellezza, centro estetico di Jessica a Cavour. Viso, corpo, unghie ed epilazione, con cura e attenzione. Prenota il tuo appuntamento." />
+<meta name="theme-color" content="#c8105a" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Promesse di Bellezza · Centro estetico a Cavour" />
+<meta property="og:description" content="Viso, corpo, unghie ed epilazione, con cura e attenzione. Prenota il tuo momento, a Cavour." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --cream:#f7f1ea; --cream-2:#efe5da; --ink:#3b332e; --muted:#8a7d72;
+    --rose:#c8105a; --rose-deep:#9c0a3f; --sage:#9aa88f; --gold:#c9a96a; --line:#e6d8ca;
+    --serif:'Cormorant Garamond',serif; --sans:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;overflow-x:hidden;width:100%;-webkit-text-size-adjust:100%;text-size-adjust:100%;}
+  body{font-family:var(--sans);color:var(--ink);background:var(--cream);line-height:1.65;-webkit-font-smoothing:antialiased;overflow-x:hidden;width:100%;max-width:100%;position:relative;font-weight:300;}
+  img,svg,iframe,video{max-width:100%;}
+  section,footer{overflow-x:hidden;}
+  a{color:inherit;text-decoration:none;}
+  .wrap{width:100%;max-width:1140px;margin:0 auto;padding:0 24px;}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.32em;text-transform:uppercase;color:var(--rose-deep);font-weight:500;}
+  h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.1;}
+  section{padding:92px 0;}
+  .section-head{max-width:640px;margin:0 auto 56px;text-align:center;display:flex;flex-direction:column;align-items:center;gap:14px;}
+  .section-head h2{font-size:clamp(2.1rem,4.5vw,3rem);}
+  .section-head p{color:var(--muted);font-size:1.05rem;}
+
+  /* BUTTONS */
+  .btn{display:inline-flex;align-items:center;gap:.55em;font-family:var(--sans);font-weight:500;font-size:.95rem;padding:.82em 1.7em;border-radius:999px;cursor:pointer;border:1.5px solid transparent;transition:all .25s ease;}
+  .btn-primary{background:var(--rose);color:#fff;}
+  .btn-primary:hover{background:var(--rose-deep);}
+  .btn-ghost{background:transparent;border-color:var(--rose);color:var(--rose-deep);}
+  .btn-ghost:hover{background:var(--rose);color:#fff;}
+  .btn-light{background:#fff;color:var(--ink);}
+  .btn-light:hover{background:var(--cream-2);}
+
+  /* HEADER */
+  header{position:fixed;top:0;left:0;right:0;z-index:50;transition:all .35s ease;}
+  header .bar{display:flex;align-items:center;justify-content:space-between;padding-top:20px;padding-bottom:20px;transition:padding .35s ease;}
+  header.scrolled{background:rgba(247,241,234,.92);backdrop-filter:blur(10px);box-shadow:0 1px 0 var(--line);}
+  header.scrolled .bar{padding-top:13px;padding-bottom:13px;}
+  .brand{font-family:var(--serif);font-size:1.5rem;font-weight:600;letter-spacing:.01em;display:flex;align-items:center;gap:10px;color:#fff;transition:color .35s ease;}
+  header.scrolled .brand{color:var(--ink);}
+  .brand .dot{width:30px;height:30px;border-radius:8px;background:linear-gradient(135deg,#c8105a,#9c0a3f);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem;font-weight:600;flex-shrink:0;}
+  nav.links{display:flex;align-items:center;gap:30px;}
+  nav.links a{font-family:var(--sans);font-size:.92rem;font-weight:400;color:#fff;transition:color .35s ease,opacity .2s;}
+  header.scrolled nav.links a{color:var(--ink);}
+  nav.links a:not(.btn):hover{opacity:.7;}
+  nav.links .btn{font-size:.88rem;padding:.6em 1.3em;}
+  nav.links a.btn-light{color:var(--ink);}
+  .burger{display:none;background:none;border:0;width:30px;height:24px;position:relative;cursor:pointer;z-index:70;}
+  .burger span{position:absolute;left:0;width:100%;height:2px;background:#fff;border-radius:2px;transition:all .3s ease;}
+  header.scrolled .burger span{background:var(--ink);}
+  .burger span:nth-child(1){top:2px;} .burger span:nth-child(2){top:11px;} .burger span:nth-child(3){top:20px;}
+
+  /* HERO */
+  .hero{position:relative;min-height:100vh;display:flex;align-items:center;background:
+     radial-gradient(120% 80% at 80% 10%,rgba(255,255,255,.22),transparent 60%),
+     radial-gradient(120% 90% at 10% 90%,rgba(214,59,118,.45),transparent 55%),
+     linear-gradient(160deg,#d63b76 0%,#9c0a3f 45%,#7d0a30 100%);}
+  .hero::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(40,28,22,.30),rgba(40,28,22,.10) 40%,rgba(40,28,22,.45));}
+  .hero-inner{position:relative;z-index:1;color:#fff;padding-top:120px;padding-bottom:90px;max-width:720px;}
+  .hero .eyebrow{color:#f6e4d6;}
+  .hero h1{font-size:clamp(3rem,8vw,5.6rem);margin:.16em 0 .28em;font-weight:500;text-shadow:0 2px 30px rgba(0,0,0,.25);}
+  .hero h1 em{font-style:italic;color:#fbeede;}
+  .hero p.lead{font-size:clamp(1.05rem,2vw,1.3rem);max-width:540px;color:rgba(255,255,255,.94);font-weight:300;}
+  .hero-cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:34px;}
+  .scrollcue{position:absolute;bottom:26px;left:50%;transform:translateX(-50%);color:rgba(255,255,255,.75);font-size:.66rem;letter-spacing:.25em;text-transform:uppercase;display:flex;flex-direction:column;align-items:center;gap:8px;z-index:1;}
+  .scrollcue::after{content:"";width:1px;height:32px;background:rgba(255,255,255,.55);}
+
+  /* STRIP */
+  .strip{background:var(--cream-2);}
+  .strip .wrap{display:flex;flex-wrap:wrap;justify-content:center;gap:14px 44px;padding:26px 24px;text-align:center;}
+  .strip span{font-family:var(--sans);font-size:.82rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:10px;}
+  .strip span::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--rose);}
+
+  /* SERVIZI */
+  .serv-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;}
+  .serv{background:#fff;border:1px solid var(--line);border-radius:18px;padding:34px 32px;box-shadow:0 18px 40px -32px rgba(59,51,46,.5);transition:transform .3s,box-shadow .3s;}
+  .serv:hover{transform:translateY(-5px);box-shadow:0 30px 54px -34px rgba(59,51,46,.55);}
+  .serv .serv-head{display:flex;align-items:center;gap:14px;margin-bottom:18px;}
+  .serv .ic{width:46px;height:46px;border-radius:12px;background:var(--cream);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+  .serv .ic svg{width:24px;height:24px;stroke:var(--rose-deep);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  .serv h3{font-size:1.3rem;line-height:1.16;margin:0;min-width:0;overflow-wrap:anywhere;}
+  .serv ul{list-style:none;display:flex;flex-direction:column;gap:10px;}
+  .serv li{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:.96rem;color:var(--ink);padding-bottom:10px;border-bottom:1px dotted var(--line);font-weight:400;}
+  .serv li:last-child{border-bottom:0;padding-bottom:0;}
+  .serv li .name{min-width:0;overflow-wrap:anywhere;}
+  .serv li .price{color:var(--rose-deep);font-weight:500;white-space:nowrap;font-family:var(--serif);font-size:1.2rem;}
+  .listino-note{text-align:center;color:var(--muted);font-size:.88rem;margin-top:30px;font-style:italic;}
+
+  /* CHI SONO */
+  .about{background:var(--cream-2);}
+  .about-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center;}
+  .about .ph{border-radius:18px;aspect-ratio:4/5;overflow:hidden;position:relative;box-shadow:0 30px 60px -34px rgba(59,51,46,.55);}
+  .about .ph .ph-fill{position:absolute;inset:0;background:
+     radial-gradient(100% 80% at 30% 20%,rgba(255,255,255,.28),transparent 60%),
+     linear-gradient(150deg,#e06699,#9c0a3f);display:flex;align-items:center;justify-content:center;}
+  .ph-tag{position:absolute;left:14px;bottom:14px;background:rgba(255,255,255,.85);color:var(--muted);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;padding:6px 12px;border-radius:999px;}
+  .about-grid h2{font-size:clamp(2rem,4vw,2.8rem);margin:12px 0 18px;}
+  .about-grid p{color:var(--ink);font-size:1.04rem;margin-bottom:16px;font-weight:300;}
+  .sign{font-family:var(--serif);font-style:italic;font-size:1.5rem;color:var(--rose-deep);margin-top:6px;}
+
+  /* INSTAGRAM */
+  .ig-wrap{display:grid;grid-template-columns:minmax(0,420px) 1fr;gap:48px;align-items:center;max-width:920px;margin:0 auto;}
+  .ig-embed{background:#fff;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 18px 40px -32px rgba(59,51,46,.5);min-height:560px;}
+  .ig-embed iframe{width:100%;height:620px;border:0;display:block;}
+  .ig-cta h3{font-size:2rem;margin-bottom:14px;color:var(--rose-deep);}
+  .ig-cta p{color:var(--muted);margin-bottom:22px;font-size:1.04rem;}
+
+  /* PRENOTA */
+  .book{background:linear-gradient(160deg,#9c0a3f,#7d0a30);color:#fff;}
+  .book .section-head h2{color:#fff;}
+  .book .section-head p{color:rgba(255,255,255,.85);}
+  .book .eyebrow{color:#f6e4d6;}
+  .book-card{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:20px;padding:38px;max-width:680px;margin:0 auto;backdrop-filter:blur(4px);}
+  .field{margin-bottom:18px;}
+  .field label{display:block;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(255,255,255,.8);margin-bottom:7px;}
+  .field input,.field select,.field textarea{width:100%;padding:13px 15px;border-radius:11px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.95);color:var(--ink);font-family:var(--sans);font-size:.98rem;}
+  .field textarea{resize:vertical;min-height:74px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+  .book-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px;}
+  .book-note{font-size:.8rem;color:rgba(255,255,255,.7);margin-top:16px;}
+
+  /* CONTATTI */
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:stretch;}
+  .info-row{display:flex;gap:14px;padding:16px 0;border-bottom:1px solid var(--line);}
+  .info-row:last-child{border-bottom:0;}
+  .info-row .ic{color:var(--rose-deep);flex-shrink:0;width:26px;display:flex;justify-content:center;padding-top:3px;}
+  .info-row .ic svg{width:21px;height:21px;stroke:var(--rose-deep);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round;}
+  .info-row b{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin-bottom:3px;font-weight:600;}
+  .info-row span,.info-row a{font-size:1.04rem;color:var(--ink);overflow-wrap:anywhere;}
+  .info-row>div:last-child{min-width:0;flex:1;}
+  .hours{list-style:none;}
+  .hours li{display:flex;justify-content:space-between;gap:24px;padding:8px 0;border-bottom:1px dotted var(--line);font-size:.96rem;}
+  .hours li span:last-child{white-space:nowrap;}
+  .hours li.closed span:last-child{color:var(--muted);}
+  .hours li.today{color:var(--rose-deep);font-weight:600;}
+  .map{border-radius:16px;overflow:hidden;min-height:300px;border:1px solid var(--line);box-shadow:0 18px 40px -32px rgba(59,51,46,.5);margin-top:26px;}
+  .map iframe{width:100%;height:100%;min-height:300px;border:0;display:block;}
+
+  /* FOOTER */
+  footer{background:var(--ink);color:#e8ddd2;padding:54px 0 30px;text-align:center;}
+  footer .fbrand{font-family:var(--serif);font-size:1.7rem;color:#fff;margin-bottom:8px;}
+  footer .fsoc{display:flex;gap:18px;justify-content:center;margin:18px 0 22px;}
+  footer .fsoc a{width:40px;height:40px;border-radius:50%;border:1px solid rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;transition:all .25s;}
+  footer .fsoc a:hover{background:var(--rose);border-color:var(--rose);}
+  footer .fsoc svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:1.7;}
+  footer .credit{font-size:.84rem;color:rgba(232,221,210,.6);margin-top:18px;}
+  footer .credit a{color:var(--gold);}
+
+  /* MODAL */
+  .modal{position:fixed;inset:0;z-index:100;display:none;align-items:center;justify-content:center;padding:24px;}
+  .modal.open{display:flex;}
+  .modal-bg{position:absolute;inset:0;background:rgba(40,28,22,.6);backdrop-filter:blur(3px);}
+  .modal-card{position:relative;background:var(--cream);border-radius:20px;max-width:430px;width:100%;padding:42px 34px;text-align:center;box-shadow:0 40px 80px -30px rgba(0,0,0,.55);}
+  .modal-card .eyebrow{color:var(--rose-deep);}
+  .modal-card h3{font-size:2rem;margin:8px 0 6px;}
+  .modal-card p{color:var(--muted);margin-bottom:22px;font-size:.96rem;}
+  .modal-card .btn{width:100%;justify-content:center;margin-top:10px;}
+  .modal-card .tel{font-family:var(--serif);font-size:1.7rem;color:var(--rose-deep);margin:4px 0 10px;}
+  .modal-close{position:absolute;top:14px;right:16px;background:none;border:0;font-size:1.7rem;color:var(--muted);cursor:pointer;line-height:1;}
+
+  /* MOBILE */
+  @media(max-width:880px){
+    .wrap{padding:0 20px;}
+    section{padding:54px 0;}
+    .section-head{margin-bottom:32px;gap:10px;}
+    .section-head h2{font-size:clamp(1.9rem,7vw,2.4rem);}
+    .section-head p{font-size:.98rem;}
+
+    nav.links{position:fixed;inset:0;height:100dvh;width:100%;background:linear-gradient(160deg,#9c0a3f,#7d0a30);flex-direction:column;justify-content:center;align-items:center;gap:22px;opacity:0;visibility:hidden;transition:opacity .32s ease,visibility .32s ease;z-index:55;padding:88px 24px 44px;}
+    nav.links.open{opacity:1;visibility:visible;}
+    nav.links a:not(.btn){color:#fff;font-size:1.7rem;font-family:var(--serif);}
+    nav.links .btn{font-family:var(--sans);font-size:1.05rem;padding:.82em 1.9em;margin-top:6px;}
+    .burger{display:block;}
+    header.menu-open .burger span{background:#fff;}
+    header.menu-open .burger span:nth-child(1){top:11px;transform:rotate(45deg);}
+    header.menu-open .burger span:nth-child(2){opacity:0;}
+    header.menu-open .burger span:nth-child(3){top:11px;transform:rotate(-45deg);}
+
+    .hero{min-height:auto;}
+    .hero-inner{padding-top:108px;padding-bottom:60px;}
+    .hero h1{font-size:clamp(2.5rem,11vw,3.4rem);}
+    .hero p.lead{font-size:1.04rem;}
+    .hero-cta{flex-direction:column;align-items:flex-start;gap:12px;margin-top:24px;}
+    .hero-cta .btn{width:auto;flex:0 0 auto;justify-content:center;}
+    .scrollcue{display:none;}
+
+    .strip .wrap{gap:10px 22px;padding:20px;}
+    .strip span{font-size:.73rem;}
+
+    .serv-grid{grid-template-columns:1fr;gap:16px;}
+    .serv{padding:28px 24px;}
+    .serv h3{font-size:1.22rem;}
+    .brand{font-size:1.32rem;gap:8px;}
+    .brand .dot{width:27px;height:27px;font-size:.92rem;}
+    header .bar{padding-top:15px;padding-bottom:15px;}
+
+    .about-grid{grid-template-columns:1fr;gap:28px;}
+    .about .ph{aspect-ratio:4/3;max-height:330px;}
+    .about-grid h2{font-size:2.2rem;}
+
+    .ig-wrap{grid-template-columns:1fr;gap:22px;}
+    .ig-embed{min-height:0;max-width:100%;}
+    .ig-embed iframe{height:500px;}
+    .ig-cta{text-align:center;}
+    .ig-cta h3{font-size:1.7rem;}
+    .ig-cta .btn{width:100%;justify-content:center;}
+
+    .book-card{padding:24px 18px;}
+    .field-row{grid-template-columns:1fr;gap:0;}
+    .field input,.field select,.field textarea{font-size:16px;}
+    .book-actions{flex-direction:column;}
+    .book-actions .btn{width:100%;justify-content:center;}
+
+    .contact-grid{grid-template-columns:1fr;gap:30px;}
+    .map{min-height:250px;}
+    .map iframe{min-height:250px;}
+
+    .modal-card{padding:34px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<header id="header">
+  <div class="wrap bar">
+    <a href="#top" class="brand"><span class="dot">P</span> Promesse di Bellezza</a>
+    <nav class="links" id="navlinks">
+      <a href="#servizi" onclick="closeMenu()">Servizi</a>
+      <a href="#chisono" onclick="closeMenu()">Chi siamo</a>
+      <a href="#contatti" onclick="closeMenu()">Contatti</a>
+      <a href="#prenota" class="btn btn-light" onclick="closeMenu()">Prenota</a>
+    </nav>
+    <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<section class="hero" id="top">
+  <div class="wrap hero-inner">
+    <p class="eyebrow">Centro estetico · Cavour</p>
+    <h1>Una promessa di <em>bellezza</em></h1>
+    <p class="lead">Estetica curata e attenzione per ogni cliente, in un ambiente accogliente. Da Jessica, nel cuore di Cavour.</p>
+    <div class="hero-cta">
+      <a href="#prenota" class="btn btn-light">Prenota un appuntamento</a>
+      <a href="#servizi" class="btn btn-ghost" style="border-color:rgba(255,255,255,.7);color:#fff;">Scopri i servizi</a>
+    </div>
+  </div>
+  <a href="#servizi" class="scrollcue">scopri</a>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span>Viso &amp; corpo</span>
+    <span>Unghie</span>
+    <span>Epilazione</span>
+    <span>Trattamenti su misura</span>
+  </div>
+</div>
+
+<section id="servizi">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">I servizi</span>
+      <h2>Trattamenti pensati per te</h2>
+      <p>Ogni trattamento è personalizzato in base alla tua pelle e alle tue esigenze. Ecco alcune delle proposte.</p>
+    </div>
+    <div class="serv-grid">
+      <div class="serv">
+        <div class="serv-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M6 12c0-3 2-7 6-7s6 4 6 7-2 7-6 7-6-4-6-7Z"/><path d="M9 12h6"/></svg></div><h3>Mani &amp; piedi</h3></div>
+        <ul>
+          <li><span class="name">Manicure e smalto semipermanente</span></li>
+          <li><span class="name">Ricostruzione unghie</span></li>
+          <li><span class="name">Pedicure estetico</span></li>
+        </ul>
+      </div>
+      <div class="serv">
+        <div class="serv-head"><div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M9 10h.01M15 10h.01M9 15c1 1 5 1 6 0"/></svg></div><h3>Viso</h3></div>
+        <ul>
+          <li><span class="name">Pulizia viso</span></li>
+          <li><span class="name">Trattamenti viso personalizzati</span></li>
+          <li><span class="name">Trattamenti specifici</span></li>
+        </ul>
+      </div>
+      <div class="serv">
+        <div class="serv-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M12 3v18M7 8c0 3 5 3 5 3s5 0 5-3M7 16c0-3 5-3 5-3"/></svg></div><h3>Epilazione</h3></div>
+        <ul>
+          <li><span class="name">Ceretta classica</span></li>
+          <li><span class="name">Ceretta brasiliana</span></li>
+          <li><span class="name">Sopracciglia e viso</span></li>
+        </ul>
+      </div>
+      <div class="serv">
+        <div class="serv-head"><div class="ic"><svg viewBox="0 0 24 24"><path d="M4 14c2-1 4-1 6 0M14 14c2-1 4-1 6 0M4 18c2-1 4-1 6 0M14 18c2-1 4-1 6 0M12 3c-1 3-3 5-3 7M12 3c1 3 3 5 3 7"/></svg></div><h3>Benessere</h3></div>
+        <ul>
+          <li><span class="name">Massaggi rilassanti</span></li>
+          <li><span class="name">Trattamenti corpo</span></li>
+          <li><span class="name">Percorsi su misura</span></li>
+        </ul>
+      </div>
+    </div>
+    <p class="listino-note">Servizi di esempio — da personalizzare con quelli reali di Jessica. Per dettagli e preventivo: in salone o su WhatsApp.</p>
+  </div>
+</section>
+
+<section class="about" id="chisono">
+  <div class="wrap about-grid">
+    <div class="ph">
+      <div class="ph-fill"></div>
+      <span class="ph-tag">La tua foto qui</span>
+    </div>
+    <div>
+      <span class="eyebrow">Chi sono</span>
+      <h2>Ciao, sono Jessica</h2>
+      <p>Metto passione e attenzione in ogni trattamento: ascolto, consiglio e scelgo con te il percorso giusto, in un ambiente accogliente dove sentirti a tuo agio.</p>
+      <p>Promesse di Bellezza è il mio piccolo spazio a Cavour, dove prenderti cura di te con calma e professionalità.</p>
+      <p class="sign">— Jessica</p>
+    </div>
+  </div>
+</section>
+
+<section class="book" id="prenota">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Prenota</span>
+      <h2>Richiedi il tuo appuntamento</h2>
+      <p>Compila i campi e invia la richiesta: si apre WhatsApp con il messaggio già pronto. Ti risponderò per confermare giorno e orario.</p>
+    </div>
+    <div class="book-card">
+      <div class="field">
+        <label for="bk-name">Il tuo nome</label>
+        <input id="bk-name" type="text" placeholder="Es. Giulia Rossi" />
+      </div>
+      <div class="field-row">
+        <div class="field">
+          <label for="bk-serv">Trattamento</label>
+          <select id="bk-serv">
+            <option>Unghie — semipermanente</option>
+            <option>Unghie — ricostruzione</option>
+            <option>Manicure / Pedicure</option>
+            <option>Trattamento viso</option>
+            <option>Epilazione / ceretta</option>
+            <option>Massaggio / benessere</option>
+            <option>Altro / non so ancora</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="bk-when">Quando preferiresti</label>
+          <input id="bk-when" type="text" placeholder="Es. sabato mattina" />
+        </div>
+      </div>
+      <div class="field">
+        <label for="bk-note">Note (facoltative)</label>
+        <textarea id="bk-note" placeholder="Aggiungi qualche dettaglio…"></textarea>
+      </div>
+      <div class="book-actions">
+        <button class="btn btn-light" onclick="sendWhats()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2Zm5.3 14.2c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .2-3.3-.7-2.8-1.1-4.5-3.9-4.6-4.1-.1-.2-1.1-1.4-1.1-2.7s.7-1.9.9-2.2c.2-.2.5-.3.6-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6.1.2.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.5-.1l.6-.7c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.2.1.6-.1 1.1Z"/></svg>
+          Invia su WhatsApp
+        </button>
+        <a class="btn btn-ghost" style="border-color:rgba(255,255,255,.7);color:#fff;" href="tel:+393481229564">Oppure chiama</a>
+      </div>
+      <p class="book-note">Demo: la richiesta viene inviata via WhatsApp. In alternativa si può aggiungere un form che invia una mail, o un'area riservata per gestire gli appuntamenti.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contatti">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="eyebrow">Dove trovarmi</span>
+      <h2>Contatti &amp; orari</h2>
+    </div>
+    <div class="contact-grid">
+      <div>
+        <div class="info-row">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M12 21s-7-5.5-7-11a7 7 0 0 1 14 0c0 5.5-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></div>
+          <div><b>Indirizzo</b><span>Via Garibaldi 8, 10061 Cavour (TO)</span></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l4 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></div>
+          <div><b>Telefono &amp; WhatsApp</b><a href="tel:+393481229564">348 122 9564</a></div>
+        </div>
+        <div class="info-row">
+          <div class="ic"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></div>
+          <div><b>Orari</b>
+            <ul class="hours" style="margin-top:6px;">
+              <li class="closed"><span>Lunedì</span><span>Chiuso</span></li>
+              <li><span>Martedì</span><span>9:00–12:30 · 14:30–19:00</span></li>
+              <li><span>Mercoledì</span><span>9:00–12:30 · 14:30–19:00</span></li>
+              <li><span>Giovedì</span><span>14:00 – 22:00</span></li>
+              <li><span>Venerdì</span><span>9:00–12:30 · 14:30–19:00</span></li>
+              <li><span>Sabato</span><span>8:00 – 16:30</span></li>
+              <li class="closed"><span>Domenica</span><span>Chiuso</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="map">
+          <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" src="https://www.google.com/maps?q=Via%20Garibaldi%208%2C%2010061%20Cavour%20TO&output=embed" title="Mappa Promesse di Bellezza"></iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fbrand">Promesse di Bellezza</div>
+    <p style="color:rgba(232,221,210,.75);font-size:.95rem;">Centro estetico · Cavour</p>
+    <div class="fsoc">
+      <a href="tel:+393481229564" aria-label="Telefono"><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l4 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg></a>
+      <a href="https://wa.me/393481229564" target="_blank" rel="noopener" aria-label="WhatsApp"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 0 0-7.7 13.5L3 21l4.7-1.2A9 9 0 1 0 12 3Z"/></svg></a>
+    </div>
+    <p class="credit">© 2026 Promesse di Bellezza · realizzato da <a href="https://mattiacaneparo.it" target="_blank" rel="noopener">Mattia Caneparo</a></p>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-bg" onclick="closeModal()"></div>
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeModal()" aria-label="Chiudi">×</button>
+    <span class="eyebrow">Prenota</span>
+    <h3>Fissa il tuo appuntamento</h3>
+    <p>Scegli come preferisci, ti rispondo io.</p>
+    <div class="tel">348 122 9564</div>
+    <a class="btn btn-primary" href="https://wa.me/393481229564?text=Ciao%20Jessica%21%20Vorrei%20prenotare%20un%20appuntamento." target="_blank" rel="noopener">Scrivi su WhatsApp</a>
+    <a class="btn btn-ghost" href="tel:+393481229564">Chiama ora</a>
+  </div>
+</div>
+
+<script>
+  const header=document.getElementById('header');
+  function onScroll(){ header.classList.toggle('scrolled', window.scrollY>40); }
+  window.addEventListener('scroll',onScroll,{passive:true}); onScroll();
+
+  const nav=document.getElementById('navlinks');
+  function toggleMenu(){ const o=nav.classList.toggle('open'); header.classList.toggle('menu-open',o); document.body.style.overflow=o?'hidden':''; }
+  function closeMenu(){ nav.classList.remove('open'); header.classList.remove('menu-open'); document.body.style.overflow=''; }
+
+  const modal=document.getElementById('modal');
+  function openModal(){ modal.classList.add('open'); document.body.style.overflow='hidden'; }
+  function closeModal(){ modal.classList.remove('open'); document.body.style.overflow=''; }
+  document.addEventListener('keydown',e=>{ if(e.key==='Escape') closeModal(); });
+
+  function sendWhats(){
+    const name=(document.getElementById('bk-name').value||'').trim();
+    const serv=document.getElementById('bk-serv').value;
+    const when=(document.getElementById('bk-when').value||'').trim();
+    const note=(document.getElementById('bk-note').value||'').trim();
+    let msg='Ciao Jessica! Vorrei prenotare un appuntamento.';
+    if(name) msg+='\nNome: '+name;
+    msg+='\nTrattamento: '+serv;
+    if(when) msg+='\nQuando: '+when;
+    if(note) msg+='\nNote: '+note;
+    window.open('https://wa.me/393481229564?text='+encodeURIComponent(msg),'_blank');
+  }
+</script>
+</body>
+</html>
