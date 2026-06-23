@@ -69,8 +69,8 @@
   .hero-art{position:relative;display:flex;justify-content:center;}
   .oval{position:relative;width:min(360px,80%);aspect-ratio:1/1.16;border-radius:50%;
     background:radial-gradient(120% 90% at 35% 25%,#e0457f,var(--mag) 55%,var(--mag-deep));
-    box-shadow:0 40px 80px -34px rgba(200,16,90,.6);display:flex;align-items:center;justify-content:center;overflow:hidden;}
-  .oval img{height:72%;width:auto;transform-origin:center center;filter:drop-shadow(0 6px 14px rgba(0,0,0,.15));}
+    box-shadow:0 40px 80px -34px rgba(200,16,90,.6);display:flex;align-items:flex-end;justify-content:center;overflow:hidden;}
+  .oval img{height:86%;width:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.15));}
   .oval .ring{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.4);border-radius:50%;}
   .star{position:absolute;color:var(--mag);opacity:.5;font-size:1.2rem;}
   .star.s1{top:8%;left:6%;}.star.s2{bottom:14%;right:4%;font-size:.9rem;}.star.s3{top:22%;right:12%;font-size:.7rem;}
@@ -190,14 +190,12 @@
     .contact-grid{grid-template-columns:1fr;gap:32px;}
     .map,.map iframe{min-height:260px;}
   }
-  /* SPARKLES */
-  .sect{position:relative;}
-  .sparkle{position:absolute;pointer-events:none;color:var(--mag);opacity:0;line-height:1;z-index:0;animation:tw 4s ease-in-out infinite;}
+  /* STELLINE — solo Chi sono + form */
+  .book{position:relative;}
+  .sparkle{position:absolute;pointer-events:none;color:var(--mag);line-height:1;z-index:0;opacity:0;animation:tw 3.8s ease-in-out infinite;}
   .about .sparkle{color:#fff;}
-  @keyframes tw{0%,100%{opacity:0;transform:scale(.5) rotate(0deg);}50%{opacity:.5;transform:scale(1) rotate(18deg);}}
-  .cursor-spark{position:fixed;pointer-events:none;z-index:9999;line-height:1;will-change:transform,opacity;animation:cs .9s ease-out forwards;}
-  @keyframes cs{0%{opacity:.9;transform:translate(-50%,-50%) scale(1) rotate(0deg);}100%{opacity:0;transform:translate(-50%,-150%) scale(.3) rotate(40deg);}}
-  @media(prefers-reduced-motion:reduce){.sparkle{animation:none;opacity:.35;}.cursor-spark{display:none;}}
+  @keyframes tw{0%,100%{opacity:0;transform:scale(.5) rotate(0deg);}50%{opacity:.7;transform:scale(1) rotate(15deg);}}
+  @media(prefers-reduced-motion:reduce){.sparkle{animation:none;opacity:.4;}}
 </style>
 </head>
 <body>
@@ -444,50 +442,23 @@
     if(note) msg+='\nNote: '+note;
     window.open('https://wa.me/393481229564?text='+encodeURIComponent(msg),'_blank');
   }
-  // ✦ Stelline decorative (scorrono col sito) + polvere di fata sul cursore
+  // ✦ Stelline luccicanti — solo in "Chi sono" e sfondo del form
   (function(){
-    document.querySelectorAll('.sect').forEach(function(h){
-      const n=4+Math.floor(Math.random()*2);
-      for(let i=0;i<n;i++){
+    ['#chisono','#prenota'].forEach(function(id){
+      const h=document.querySelector(id); if(!h) return;
+      h.style.position='relative';
+      for(let i=0;i<8;i++){
         const s=document.createElement('span');
         s.className='sparkle';
         s.textContent=Math.random()<.5?'✦':'✧';
         s.style.left=(4+Math.random()*90)+'%';
-        s.style.top=(10+Math.random()*78)+'%';
-        s.style.fontSize=(9+Math.random()*13)+'px';
+        s.style.top=(8+Math.random()*82)+'%';
+        s.style.fontSize=(11+Math.random()*12)+'px';
         s.style.animationDelay=(Math.random()*4)+'s';
-        s.style.animationDuration=(3.2+Math.random()*2.6)+'s';
+        s.style.animationDuration=(3+Math.random()*2.6)+'s';
         h.appendChild(s);
       }
     });
-    if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
-      let last=0;
-      window.addEventListener('mousemove',function(e){
-        const t=Date.now(); if(t-last<48) return; last=t;
-        const s=document.createElement('span');
-        s.className='cursor-spark';
-        s.textContent=Math.random()<.5?'✦':'✧';
-        s.style.left=e.clientX+'px'; s.style.top=e.clientY+'px';
-        s.style.fontSize=(8+Math.random()*9)+'px';
-        s.style.color=Math.random()<.5?'#c8105a':'#e0457f';
-        document.body.appendChild(s);
-        setTimeout(function(){s.remove();},900);
-      },{passive:true});
-    }
-  })();
-  // ✦ La fata gira mentre scorri la pagina
-  (function(){
-    const f=document.querySelector('.oval img');
-    if(!f || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
-    f.style.transition='transform .12s linear';
-    let ticking=false;
-    window.addEventListener('scroll',function(){
-      if(ticking) return; ticking=true;
-      requestAnimationFrame(function(){
-        f.style.transform='rotate('+(window.scrollY*0.1)+'deg)';
-        ticking=false;
-      });
-    },{passive:true});
   })();
 </script>
 </body>
