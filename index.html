@@ -442,12 +442,12 @@
     if(note) msg+='\nNote: '+note;
     window.open('https://wa.me/393481229564?text='+encodeURIComponent(msg),'_blank');
   }
-  // ✦ Stelline luccicanti — solo in "Chi sono" e sfondo del form
+  // ✦ Stelline luccicanti in tutto il sito
   (function(){
-    ['#chisono','#prenota'].forEach(function(id){
-      const h=document.querySelector(id); if(!h) return;
+    document.querySelectorAll('.hero, .sect').forEach(function(h){
       h.style.position='relative';
-      for(let i=0;i<8;i++){
+      const n = h.classList.contains('about') ? 8 : 6;
+      for(let i=0;i<n;i++){
         const s=document.createElement('span');
         s.className='sparkle';
         s.textContent=Math.random()<.5?'✦':'✧';
