@@ -52,6 +52,7 @@
   .brand .mk{width:34px;height:34px;border-radius:50%;background:var(--mag);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
   .brand .mk img{height:24px;width:auto;display:block;}
   nav.links{display:flex;align-items:center;gap:30px;}
+  .menu-inner{display:contents;}
   nav.links a{font-family:var(--sans);font-size:.92rem;color:var(--ink);transition:color .2s;}
   nav.links a:not(.btn):hover{color:var(--mag);}
   .burger{display:none;background:none;border:0;width:30px;height:22px;position:relative;cursor:pointer;z-index:70;}
@@ -68,8 +69,8 @@
   .hero-art{position:relative;display:flex;justify-content:center;}
   .oval{position:relative;width:min(360px,80%);aspect-ratio:1/1.16;border-radius:50%;
     background:radial-gradient(120% 90% at 35% 25%,#e0457f,var(--mag) 55%,var(--mag-deep));
-    box-shadow:0 40px 80px -34px rgba(200,16,90,.6);display:flex;align-items:flex-end;justify-content:center;overflow:hidden;}
-  .oval img{height:86%;width:auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.15));}
+    box-shadow:0 40px 80px -34px rgba(200,16,90,.6);display:flex;align-items:center;justify-content:center;overflow:hidden;}
+  .oval img{height:72%;width:auto;transform-origin:center center;filter:drop-shadow(0 6px 14px rgba(0,0,0,.15));}
   .oval .ring{position:absolute;inset:14px;border:1px solid rgba(255,255,255,.4);border-radius:50%;}
   .star{position:absolute;color:var(--mag);opacity:.5;font-size:1.2rem;}
   .star.s1{top:8%;left:6%;}.star.s2{bottom:14%;right:4%;font-size:.9rem;}.star.s3{top:22%;right:12%;font-size:.7rem;}
@@ -158,12 +159,14 @@
     .wrap{padding-left:20px;padding-right:20px;}
     .sect{padding-top:58px;padding-bottom:58px;}
     .sect-head{margin-bottom:34px;}
-    nav.links{position:fixed;inset:0;height:100dvh;width:100%;background:linear-gradient(150deg,var(--mag),var(--mag-deep));flex-direction:column;justify-content:center;align-items:center;gap:24px;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:55;}
+    nav.links{position:fixed;inset:0;height:100dvh;width:100%;background:rgba(255,255,255,.98);backdrop-filter:blur(6px);display:flex;justify-content:center;align-items:center;gap:0;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s;z-index:55;}
     nav.links.open{opacity:1;visibility:visible;}
-    nav.links a:not(.btn){color:#fff;font-size:1.7rem;font-family:var(--serif);}
-    nav.links .btn{font-size:1rem;}
+    .menu-inner{display:flex;flex-direction:column;align-items:stretch;text-align:center;gap:16px;background:linear-gradient(160deg,var(--mag),var(--mag-deep));padding:32px 36px;border-radius:26px;box-shadow:0 30px 70px -28px rgba(200,16,90,.55);min-width:230px;}
+    nav.links a:not(.btn){color:#fff;font-size:1.5rem;font-family:var(--serif);}
+    nav.links .btn{font-size:1.05rem;margin-top:4px;}
+    nav.links .btn-primary{background:#fff;color:var(--mag-deep);}
     .burger{display:block;}
-    header.menu-open .burger span{background:#fff;}
+    header.menu-open .burger span{background:var(--ink);}
     header.menu-open .burger span:nth-child(1){top:10px;transform:rotate(45deg);}
     header.menu-open .burger span:nth-child(2){opacity:0;}
     header.menu-open .burger span:nth-child(3){top:10px;transform:rotate(-45deg);}
@@ -203,10 +206,12 @@
   <div class="wrap bar">
     <a href="#top" class="brand"><span class="mk"><img src="images/fairy.png" alt="" /></span> Promesse di Bellezza</a>
     <nav class="links" id="navlinks">
-      <a href="#servizi" onclick="closeMenu()">Servizi</a>
-      <a href="#chisono" onclick="closeMenu()">Chi sono</a>
-      <a href="#contatti" onclick="closeMenu()">Contatti</a>
-      <a href="#prenota" class="btn btn-primary" onclick="closeMenu()">Prenota</a>
+      <div class="menu-inner">
+        <a href="#servizi" onclick="closeMenu()">Servizi</a>
+        <a href="#chisono" onclick="closeMenu()">Chi sono</a>
+        <a href="#contatti" onclick="closeMenu()">Contatti</a>
+        <a href="#prenota" class="btn btn-primary" onclick="closeMenu()">Prenota</a>
+      </div>
     </nav>
     <button class="burger" id="burger" onclick="toggleMenu()" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
@@ -469,6 +474,20 @@
         setTimeout(function(){s.remove();},900);
       },{passive:true});
     }
+  })();
+  // ✦ La fata gira mentre scorri la pagina
+  (function(){
+    const f=document.querySelector('.oval img');
+    if(!f || window.matchMedia('(prefers-reduced-motion:reduce)').matches) return;
+    f.style.transition='transform .12s linear';
+    let ticking=false;
+    window.addEventListener('scroll',function(){
+      if(ticking) return; ticking=true;
+      requestAnimationFrame(function(){
+        f.style.transform='rotate('+(window.scrollY*0.1)+'deg)';
+        ticking=false;
+      });
+    },{passive:true});
   })();
 </script>
 </body>
