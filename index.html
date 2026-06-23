@@ -26,7 +26,7 @@
   img,svg,iframe{max-width:100%;}
   section{overflow-x:hidden;}
   a{color:inherit;text-decoration:none;}
-  .wrap{width:100%;max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px;}
+  .wrap{width:100%;max-width:1120px;margin:0 auto;padding-left:24px;padding-right:24px;position:relative;z-index:1;}
   h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.12;}
   .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.34em;text-transform:uppercase;color:var(--mag);font-weight:500;}
   .sect{padding-top:88px;padding-bottom:88px;}
@@ -187,6 +187,14 @@
     .contact-grid{grid-template-columns:1fr;gap:32px;}
     .map,.map iframe{min-height:260px;}
   }
+  /* SPARKLES */
+  .sect{position:relative;}
+  .sparkle{position:absolute;pointer-events:none;color:var(--mag);opacity:0;line-height:1;z-index:0;animation:tw 4s ease-in-out infinite;}
+  .about .sparkle{color:#fff;}
+  @keyframes tw{0%,100%{opacity:0;transform:scale(.5) rotate(0deg);}50%{opacity:.5;transform:scale(1) rotate(18deg);}}
+  .cursor-spark{position:fixed;pointer-events:none;z-index:9999;line-height:1;will-change:transform,opacity;animation:cs .9s ease-out forwards;}
+  @keyframes cs{0%{opacity:.9;transform:translate(-50%,-50%) scale(1) rotate(0deg);}100%{opacity:0;transform:translate(-50%,-150%) scale(.3) rotate(40deg);}}
+  @media(prefers-reduced-motion:reduce){.sparkle{animation:none;opacity:.35;}.cursor-spark{display:none;}}
 </style>
 </head>
 <body>
@@ -431,6 +439,37 @@
     if(note) msg+='\nNote: '+note;
     window.open('https://wa.me/393481229564?text='+encodeURIComponent(msg),'_blank');
   }
+  // ✦ Stelline decorative (scorrono col sito) + polvere di fata sul cursore
+  (function(){
+    document.querySelectorAll('.sect').forEach(function(h){
+      const n=4+Math.floor(Math.random()*2);
+      for(let i=0;i<n;i++){
+        const s=document.createElement('span');
+        s.className='sparkle';
+        s.textContent=Math.random()<.5?'✦':'✧';
+        s.style.left=(4+Math.random()*90)+'%';
+        s.style.top=(10+Math.random()*78)+'%';
+        s.style.fontSize=(9+Math.random()*13)+'px';
+        s.style.animationDelay=(Math.random()*4)+'s';
+        s.style.animationDuration=(3.2+Math.random()*2.6)+'s';
+        h.appendChild(s);
+      }
+    });
+    if(window.matchMedia('(hover:hover) and (pointer:fine)').matches){
+      let last=0;
+      window.addEventListener('mousemove',function(e){
+        const t=Date.now(); if(t-last<48) return; last=t;
+        const s=document.createElement('span');
+        s.className='cursor-spark';
+        s.textContent=Math.random()<.5?'✦':'✧';
+        s.style.left=e.clientX+'px'; s.style.top=e.clientY+'px';
+        s.style.fontSize=(8+Math.random()*9)+'px';
+        s.style.color=Math.random()<.5?'#c8105a':'#e0457f';
+        document.body.appendChild(s);
+        setTimeout(function(){s.remove();},900);
+      },{passive:true});
+    }
+  })();
 </script>
 </body>
 </html>
